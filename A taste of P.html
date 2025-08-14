@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Page Title</title>
+</head>
+<body>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Taste of Passion - Case Study</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .page {
+            background: white;
+            margin: 20px 0;
+            padding: 60px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            min-height: 90vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
+        }
+
+        /* Title Page */
+        .title-page {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .title-page h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 20px rgba(255, 107, 107, 0.3)); }
+            to { filter: drop-shadow(0 0 40px rgba(254, 202, 87, 0.5)); }
+        }
+
+        .subtitle {
+            font-size: 1.8rem;
+            font-weight: 300;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .client-info {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .client-logo {
+            width: 120px;
+            height: 120px;
+            background: #ff6b35;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        /* Statistics Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transform: translateY(0);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+            100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            font-weight: 500;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-change {
+            font-size: 0.9rem;
+            margin-top: 10px;
+            padding: 5px 15px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        /* Progress Bars */
+        .progress-container {
+            margin: 30px 0;
+        }
+
+        .progress-item {
+            margin: 20px 0;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .progress-bar {
+            height: 12px;
+            background: #f0f0f0;
+            border-radius: 6px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff6b6b, #feca57);
+            border-radius: 6px;
+            position: relative;
+            animation: fillBar 2s ease-out;
+        }
+
+        @keyframes fillBar {
+            from { width: 0; }
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: progressShine 2s infinite;
+        }
+
+        @keyframes progressShine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Content Strategy */
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .strategy-card {
+            background: #f8f9ff;
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+            position: relative;
+        }
+
+        .strategy-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .strategy-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .strategy-description {
+            color: #5a6c7d;
+            line-height: 1.6;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            margin: 40px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50px;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin: 40px 0;
+            padding-left: 120px;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: 35px;
+            top: 10px;
+            width: 30px;
+            height: 30px;
+            background: #667eea;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            border: 1px solid #e9ecef;
+        }
+
+        .timeline-month {
+            font-weight: 700;
+            color: #667eea;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        /* Video Analytics */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .video-card {
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .video-card::before {
+            content: '📹';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 4rem;
+            opacity: 0.1;
+        }
+
+        .video-views {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+        .video-title {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Results Section */
+        .results-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 40px 0;
+        }
+
+        .before-after {
+            text-align: center;
+        }
+
+        .before-after h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .before h3 {
+            background: #ff6b6b;
+            color: white;
+        }
+
+        .after h3 {
+            background: #51cf66;
+            color: white;
+        }
+
+        .metric-comparison {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px;
+            border-radius: 20px;
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            color: white;
+            padding: 20px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #feca57 0%, #ff6b6b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+
+        .page-number {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        /* Print Styles */
+        @media print {
+            .page {
+                page-break-after: always;
+                margin: 0;
+                box-shadow: none;
+            }
+            
+            .page:last-child {
+                page-break-after: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Page 1: Title Page -->
+        <div class="page title-page">
+            <h1>SUCCESS STORY</h1>
+            <div class="subtitle">How We Tripled A Caribbean Restaurant's Social Media Growth in 90 Days</div>
+            
+            <div class="client-info">
+                <div class="client-logo">ATP</div>
+                <h3>A Taste of Passion</h3>
+                <p>Authentic Caribbean Cuisine • London</p>
+                <p style="margin-top: 20px; opacity: 0.8;">3-Month Social Media Transformation Case Study</p>
+            </div>
+        </div>
+
+        <!-- Page 2: Executive Summary -->
+        <div class="page">
+            <h2>Executive Summary</h2>
+            <div class="page-number">02</div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">+207%</div>
+                    <div class="stat-label">Follower Growth</div>
+                    <div class="stat-change">786 → 3,115 followers</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-number">47K+</div>
+                    <div class="stat-label">Total Video Views</div>
+                    <div class="stat-change">Across all content</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-number">99.5%</div>
+                    <div class="stat-label">Organic Reach</div>
+                    <div class="stat-change">Algorithm optimization</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-number">30.6%</div>
+                    <div class="stat-label">Video Completion Rate</div>
+                    <div class="stat-change">Above industry average</div>
+                </div>
+            </div>
+
+            <h3>The Challenge</h3>
+            <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 30px;">A Taste of Passion, an authentic Caribbean restaurant with two London locations, was struggling with inconsistent social media presence and low engagement. Despite serving exceptional food, their online visibility wasn't translating to foot traffic and brand awareness.</p>
+
+            <h3>The Solution</h3>
+            <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 30px;">We implemented a comprehensive <span class="highlight">content-first strategy</span> focusing on authentic storytelling, process-driven content, and strategic algorithm optimization to showcase their vibrant Caribbean culture and mouth-watering dishes.</p>
+
+            <h3>Key Results Achieved</h3>
+            <div class="progress-container">
+                <div class="progress-item">
+                    <div class="progress-label">
+                        <span>Instagram Followers</span>
+                        <span><strong>+296% Growth</strong></span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 95%"></div>
+                    </div>
+                </div>
+                
+                <div class="progress-item">
+                    <div class="progress-label">
+                        <span>TikTok Engagement</span>
+                        <span><strong>+340% Increase</strong></span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 88%"></div>
+                    </div>
+                </div>
+                
+                <div class="progress-item">
+                    <div class="progress-label">
+                        <span>Video Views</span>
+                        <span><strong>47,663 Total</strong></span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 92%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 3: Initial Analysis & Strategy -->
+        <div class="page">
+            <h2>Initial Analysis & Strategy</h2>
+            <div class="page-number">03</div>
+
+            <h3>Starting Position (Month 0)</h3>
+            <div class="results-comparison">
+                <div class="before-after before">
+                    <h3>Before Our Intervention</h3>
+                    <div class="metric-comparison">
+                        <strong>786 TikTok Followers</strong><br>
+                        Low engagement rates
+                    </div>
+                    <div class="metric-comparison">
+                        <strong>Inconsistent Posting</strong><br>
+                        No clear content strategy
+                    </div>
+                    <div class="metric-comparison">
+                        <strong>Limited Reach</strong><br>
+                        Poor algorithm performance
+                    </div>
+                    <div class="metric-comparison">
+                        <strong>Generic Content</strong><br>
+                        No authentic storytelling
+                    </div>
+                </div>
+                
+                <div class="before-after after">
+                    <h3>Our Strategic Approach</h3>
+                    <div class="metric-comparison">
+                        <strong>Content Audit</strong><br>
+                        Analyzed existing performance
+                    </div>
+                    <div class="metric-comparison">
+                        <strong>Competitor Research</strong><br>
+                        Identified market gaps
+                    </div>
+                    <div class="metric-comparison">
+                        <strong>Brand Positioning</strong><br>
+                        "Best Jamaican Restaurant in London"
+                    </div>
+                    <div class="metric-comparison">
+                        <strong>Content Pillars</strong><br>
+                        Authentic process + culture
+                    </div>
+                </div>
+            </div>
+
+            <h3>Our Strategic Framework</h3>
+            <div class="strategy-grid">
+                <div class="strategy-card">
+                    <div class="strategy-icon">🎯</div>
+                    <div class="strategy-title">Content Positioning</div>
+                    <div class="strategy-description">Positioned as "Your new fav Jamaican spot" and "Best Jamaican Restaurant in London" to create strong brand identity and local authority.</div>
+                </div>
+                
+                <div class="strategy-card">
+                    <div class="strategy-icon">📱</div>
+                    <div class="strategy-title">Platform Optimization</div>
+                    <div class="strategy-description">Focused heavily on TikTok for viral potential while maintaining Instagram presence for brand credibility and customer engagement.</div>
+                </div>
+                
+                <div class="strategy-card">
+                    <div class="strategy-icon">🍽️</div>
+                    <div class="strategy-title">Authentic Storytelling</div>
+                    <div class="strategy-description">Showcased genuine Caribbean culture, behind-the-scenes cooking processes, and customer reactions to create emotional connections.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 4: Content Strategy & Calendar -->
+        <div class="page">
+            <h2>Content Strategy & Calendar</h2>
+            <div class="page-number">04</div>
+
+            <h3>Content Pillar Strategy</h3>
+            <div class="strategy-grid">
+                <div class="strategy-card">
+                    <div class="strategy-icon">👨‍🍳</div>
+                    <div class="strategy-title">Behind-the-Scenes Content</div>
+                    <div class="strategy-description">
+                        <strong>40% of content</strong><br>
+                        • Cooking processes and techniques<br>
+                        • Staff personalities and interactions<br>
+                        • Kitchen operations and preparation<br>
+                        • Authentic Caribbean cooking methods
+                    </div>
+                </div>
+                
+                <div class="strategy-card">
+                    <div class="strategy-icon">🍛</div>
+                    <div class="strategy-title">Food Showcases</div>
+                    <div class="strategy-description">
+                        <strong>35% of content</strong><br>
+                        • Signature dishes and specialties<br>
+                        • Meal preparation and plating<br>
+                        • Customer favorites and reactions<br>
+                        • Seasonal menu highlights
+                    </div>
+                </div>
+                
+                <div class="strategy-card">
+                    <div class="strategy-icon">🏆</div>
+                    <div class="strategy-title">Social Proof & Reviews</div>
+                    <div class="strategy-description">
+                        <strong>25% of content</strong><br>
+                        • Customer testimonials and reactions<br>
+                        • User-generated content features<br>
+                        • Awards and recognition posts<br>
+                        • Community engagement highlights
+                    </div>
+                </div>
+            </div>
+
+            <h3>Weekly Content Calendar Structure</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-month">Monday - "Monday Motivation"</div>
+                        <p>Behind-the-scenes prep work, staff spotlights, and week kickoff content to build authentic connections with audience.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-month">Wednesday - "What's Cooking Wednesday"</div>
+                        <p>Feature signature dishes, cooking processes, and detailed food preparation to showcase culinary expertise.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-month">Friday - "Flavor Friday"</div>
+                        <p>Customer reactions, taste tests, and social proof content to build credibility and encourage visits.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-month">Weekend - "Weekend Vibes"</div>
+                        <p>Location highlights, atmosphere content, and community engagement to drive weekend foot traffic.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Content Creation Process</h3>
+            <p style="font-size: 1.1rem; line-height: 1.8;">We established a systematic approach to content creation, filming multiple pieces of content during each restaurant visit to maximize efficiency. Each piece of content was crafted with specific hooks, trending audio, and optimized captions to maximize reach and engagement.</p>
+        </div>
+
+        <!-- Page 5: Month-by-Month Growth Timeline -->
+        <div class="page">
+            <h2>90-Day Growth Timeline</h2>
+            <div class="page-number">05</div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-month">Month 1: Foundation Building</div>
+                        <p><strong>Focus:</strong> Content audit, strategy development, and initial content creation</p>
+                        <div style="margin-top: 15px;">
+                            <strong>Key Achievements:</strong><br>
+                            • Established consistent posting schedule<br>
+                            • Created brand positioning as "Your new fav Jamaican spot"<br>
+                            • Launched behind-the-scenes content series<br>
+                            • Started building authentic brand voice
+                        </div>
+                        <div style="margin-top: 15px; background: #e3f2fd; padding: 15px; border-radius: 8px;">
+                            <strong>Results:</strong> 786 → 918 followers (+16.8%)
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-month">Month 2: Momentum Building</div>
+                        <p><strong>Focus:</strong> Content optimization, trend integration, and engagement scaling</p>
+                        <div style="margin-top: 15px;">
+                            <strong>Key Achievements:</strong><br>
+                            • Implemented trending audio strategies<br>
+                            • Launched "A Touch of Paradise" campaign<br>
+                            • Created viral-worthy cooking process content<br>
+                            • Established customer reaction content series
+                        </div>
+                        <div style="margin-top: 15px; background: #f3e5f5; padding: 15px; border-radius: 8px;">
+                            <strong>Results:</strong> 918 → 3,079 followers (+235.4%)
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-month">Month 3: Scale & Optimize</div>
+                        <p><strong>Focus:</strong> Performance optimization, content diversification, and audience retention</p>
+                        <div style="margin-top: 15px;">
+                            <strong>Key Achievements:</strong><br>
+                            • Achieved 99.5% organic reach on TikTok<br>
+                            • Optimized content for 30.6% completion rates<br>
+                            • Established location-specific content for both venues<br>
+                            • Built strong community engagement
+                        </div>
+                        <div style="margin-top: 15px; background: #e8f5e8; padding: 15px; border-radius: 8px;">
+                            <strong>Results:</strong> 3,079 → 3,115 followers (sustained growth + engagement focus)
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Growth Acceleration Factors</h3>
+            <div class="stats-grid">
+                <div class="stat-card" style="background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);">
+                    <div class="stat-number">Month 2</div>
+                    <div class="stat-label">Breakthrough Period</div>
+                    <div class="stat-change">+235% follower surge</div>
+                </div>
+                
+                <div class="stat-card" style="background: linear-gradient(135deg, #51cf66 0%, #339af0 100%);">
+                    <div class="stat-number">22.3K</div>
+                    <div class="stat-label">Views in 30 Days</div>
+                    <div class="stat-change">Peak performance month</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 6: Top Performing Content -->
+        <div class="page">
+            <h2>Top Performing Content Analysis</h2>
+            <div class="page-number">06</div>
+
+            <h3>Viral Video Breakdown</h3>
+            <div class="video-grid">
+                <div class="video-card" style="background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);">
+                    <div class="video-views">63K</div>
+                    <div class="video-title">"Jamaican Spot with 56 Meals"</div>
+                    <p style="margin-top: 10px; font-size: 0.9rem;">Showcased variety and authenticity</p>
+                </div>
+                
+                <div class="video-card" style="background: linear-gradient(135deg, #51cf66 0%, #339af0 100%);">
+                    <div class="video-views">61K</div>
+                    <div class="video-title">"A Touch of Paradise"</div>
+                    <p style="margin-top: 10px; font-size: 0.9rem;">Customer reaction content</p>
+                </div>
+                
+                <div class="video-card" style="background: linear-gradient(135deg, #9c88ff 0%, #feca57 100%);">
+                    <div class="video-views">7.3K</div>
+                    <div class="video-title">"Would you pay £12.50 for this?"</div>
+                    <p style="margin-top: 10px; font-size: 0.9rem;">Value-driven engagement hook</p>
+                </div>
+            </div>
+
+            <h3>Content Performance Analysis</h3>
+            <div class="strategy-grid">
+                <div class="strategy-card">
+                    <div class="strategy-icon">🔥</div>
+                    <div class="strategy-title">High-Engagement Hooks</div>
+                    <div class="strategy-description">
+
+</body>
+</html>
